@@ -3,4 +3,4 @@
 
 ## Linux-dz
 
-[Linux system, containers, embedded and kernel courses](../tixxdz/README.md)
+[Linux system, containers, embedded and kernel courses](../master/tixxdz/README.md)
