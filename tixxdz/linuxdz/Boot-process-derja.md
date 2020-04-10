@@ -214,7 +214,7 @@ sudo systemctl start timer-hello-world.timer
 
 ## 3. Logins and session
 
-Display logins with loginctl - systemd-logind
+Display logins with [loginctl - systemd-logind](https://www.freedesktop.org/software/systemd/man/loginctl.html)
 
 Display seats with loginctl
 
