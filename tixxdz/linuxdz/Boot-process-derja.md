@@ -2,13 +2,12 @@
 
 Video Link:
 
-Djalal Harouni
+Djalal Harouni  -  https://github.com/tixxdz
 
-Email for corretions here:  tixxdz+linuxdz@gmail.com  -  sorry if I do not reply.
-
-https://github.com/tixxdz
+Email for corrections here:  tixxdz+linuxdz@gmail.com  -  sorry if I do not reply.
 
 Date: 10/04/2020
+
 LastModified: 10/04/2020
 
 
@@ -34,13 +33,15 @@ Adapted to be easy with video in derja language, Algeria local dialect.
 
 ## Plan
 
-* Linux Boot Process - Bootloader
+1) Linux Boot Process - Bootloader
    - Linux Kernel and initramfs
    - Init systemd and Services
 
-* Logins and timers (cron jobs)
+2) Systemd run program at boot and timers (cron jobs)
 
-* Debug boot and Security
+3) Logins and session
+
+4) Debug boot and Security
 
 
 ## 1. Linux boot process
@@ -118,10 +119,9 @@ Sysinit.target, basic.target, multi-user.target and graphical.target
 systemd  - journald tools , systemd-cgls and others.
 
 
-### 1.4 Systemd init - example service
+## 2 Systemd run program at boot and timers (cron jobs)
 
-
-Example service program running during each boot:
+### 2.1 Example service or program running during each boot:
 
 File [hello-world.service](../systemd/units/hello-world.service)
 
@@ -160,3 +160,93 @@ NetworkManager File [NetworkManager.Service](../systemd/units/NetworkManager.ser
 ```bash
 cat /lib/systemd/system/NetworkManager.service
 ```
+
+
+### 2.2 Example timer service (cron job)
+
+[systemd timer services instead of cron jobs](https://www.freedesktop.org/software/systemd/man/systemd.timer.html)
+
+Example  timer-hello-world timer service  -  execute each 30 seconds
+
+File [timer-hello-world.service](../systemd/unit/timer-hello-world.service)
+
+```
+[Unit]
+Description=Timer hello world - Service unit
+
+[Service]
+Type=oneshot
+ExecStart=/usr/bin/echo "Timer hello world at $(date)"
+
+[Install]
+WantedBy=multi-user.target
+```
+
+**Note: service type is oneshot (execute command and exit) if not then you do not need timers nor cron jobs**
+
+
+
+File [timer-hello-world.timer](../systemd/unit/timer-hello-world.timer)
+
+```
+[Unit]
+Description=Timer hello world - Timer unit
+
+[Timer]
+OnBootSec=1min
+OnUnitActiveSec=30sec
+
+[Install]
+WantedBy=timers.target
+```
+
+Install timer service commands:
+
+```bash
+cp timer-hello-world.service /etc/systemd/system/
+cp timer-hello-world.timer /etc/systemd/system/
+$ systemctl daemon-reload
+$ systemctl enable timer-hello-world.service
+$ systemctl enable timer-hello-world.timer
+$ systemctl start timer-hello-world.timer
+```
+
+
+## 3. Logins and session
+
+Display logins with loginctl - systemd-logind
+
+Display seats with loginctl
+
+Lock and unlock sessions with loginctl
+
+```bash
+loginctl --help
+```
+
+
+## 4. Debug boot and Security
+
+### 4.1 Debug boot kernel
+
+* Kernel Boot logs stored in `/var/log/dmesg` `/var/log/syslog`
+
+```bash
+sudo dmesg
+sudo journalctl -k
+```
+
+* Kernel debug options to boot cmdline:
+
+  - Remove cmdline:    `quiet`  `splash`   `vt.handoff=7`
+
+  - Add cmdline:  `console=ttyS0,115200 console=tty1`   `debug` or `debug=vc`
+
+  - Change kernel ring buffer size: log_buf_len=16M 
+
+
+* Kernel Boot blocked:
+
+Magic SysRq  ctl-alt-del  https://www.kernel.org/doc/html/latest/admin-guide/sysrq.html
+/proc/sys/kernel/sysrq  /proc/sys/kernel/ctrl-alt-del
+
