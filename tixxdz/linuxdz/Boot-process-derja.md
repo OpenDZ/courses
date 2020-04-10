@@ -1,32 +1,35 @@
 # 2. Boot process debugging, security and beyond - Linux-dz courses  (derja)
 
-Courses Link:
+Video Link:
 
-Djalal Harouni  -   tixxdz@gmail.com     https://github.com/tixxdz
+Djalal Harouni
 
-Date: 04/04/2020
-Modified: 04/04/2020
+Email for corretions here:  tixxdz+linuxdz@gmail.com  -  sorry if I do not reply.
+
+https://github.com/tixxdz
+
+Date: 10/04/2020
+LastModified: 10/04/2020
 
 
 ## What is about ?
 
 References:  https://training.linuxfoundation.org/training/fundamentals-of-linux/
 
-Adapted by Djalal Harouni to make it super easy with derja language, Algeria local dialect.
+Adapted to be easy with video in derja language, Algeria local dialect.
 
 * Ghir important things!
-        Dirou research alone et berkewna men excuses ya wechbikoum?
+   - Dirou research alone et berkewna men excuses ya wechbikoum?
 
 * 3leh ?
-        Tal3ou niveau 
+   - Tal3ou niveau 
 
 * Goal - Hadef ?
-        Debug Linux boot process and beyond
-        Services, security, logins and timers
+   - Debug Linux boot process and beyond
+   - Services, security, logins and timers
 
 * Teacher ?
-        Djalal Harouni - Open Source Software maintainer - linux kernel developer...
-        Wrote code used in millions of machines and devices.
+   - Djalal Harouni - Open Source Software maintainer - linux kernel developer... Wrote code used in millions of machines and devices.
 
 
 ## Plan
@@ -122,7 +125,7 @@ Example service program running during each boot:
 
 File [hello-world.service](../systemd/units/hello-world.service)
 
-```bash
+```
 [Unit]
 Description=Hello World Service
 
@@ -133,7 +136,27 @@ ExecStart=/bin/bash -c 'for i in {1..30}; do echo "Hello at $(date)"; sleep 3; d
 WantedBy=multi-user.target
 ```
 
+Installation commands:
+```bash
+sudo cp hello-world.service /etc/systemd/system/
+sudo systemctl daemon-reload
+sudo systemctl enable hello-world.service
+sudo systemctl start hello-world.service
+```
+
+Stop:
+```bash
+sudo systemctl stop hello-world.service
+```
+
+Disable:
+```bash
+sudo systemctl disable hello-world.service
+```
+
+
+NetworkManager File [NetworkManager.Service](../systemd/units/NetworkManager.service) example.
+
 ```bash
 cat /lib/systemd/system/NetworkManager.service
 ```
-
