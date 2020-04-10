@@ -203,12 +203,12 @@ WantedBy=timers.target
 Install timer service commands:
 
 ```bash
-cp timer-hello-world.service /etc/systemd/system/
-cp timer-hello-world.timer /etc/systemd/system/
-$ systemctl daemon-reload
-$ systemctl enable timer-hello-world.service
-$ systemctl enable timer-hello-world.timer
-$ systemctl start timer-hello-world.timer
+sudo cp timer-hello-world.service /etc/systemd/system/
+sudo cp timer-hello-world.timer /etc/systemd/system/
+sudo systemctl daemon-reload
+sudo systemctl enable timer-hello-world.service
+sudo systemctl enable timer-hello-world.timer
+sudo systemctl start timer-hello-world.timer
 ```
 
 
