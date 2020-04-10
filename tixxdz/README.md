@@ -13,7 +13,9 @@ To be made.
 
 Youtube link:
 
-Slides link: 
+Markdown link: linuxdz/Boot-process-derja.md
+
+Pdf link: 
 
 
 ### 1.3 File system operations and beyond
