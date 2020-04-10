@@ -2,6 +2,7 @@
 Description=Hello World Service
 
 [Service]
+# This is comment example: ExecStart=/usr/bin/myapp
 ExecStart=/bin/bash -c 'for i in {1..30}; do echo "Hello at $(date)"; sleep 3; done'
 
 [Install]
