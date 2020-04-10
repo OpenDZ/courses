@@ -1,0 +1,8 @@
+[Unit]
+Description=Hello World Service
+
+[Service]
+ExecStart=/bin/bash -c 'for i in {1..30}; do echo "Hello at $(date)"; sleep 3; done'
+
+[Install]
+WantedBy=multi-user.target
