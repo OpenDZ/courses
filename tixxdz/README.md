@@ -13,7 +13,7 @@ To be made.
 
 Youtube link:
 
-Markdown link: linuxdz/Boot-process-derja.md
+Markdown link: [Linux Boot Process b Derja](linuxdz/Boot-process-derja.md)
 
 Pdf link: 
 
