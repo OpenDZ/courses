@@ -347,13 +347,12 @@ Kernel developers to inspect if messages are getting there (it uses printk inter
         # echo "insert from userspace by user $(whoami)" > /dev/kmsg
 ```
 
-#### 4.2.4 Boot fails or blocked
+#### 4.2.4 Boot fails
 
 Try `Ctrl+Alt+Del` to reboot or hard reset
 
-* Debug with hardware Serial Console
+* Debug with hardware Serial Console - Kernel boot command line options:
 
-  - Kernel boot command line options:
 ```bash
         systemd.log_level=debug systemd.log_target=console
 ```
@@ -364,30 +363,27 @@ Try `Ctrl+Alt+Del` to reboot or hard reset
 ```
 
 
-* Boot into rescue mode if problem is later after basic boot
+* Boot into rescue mode if problem is happens later - Kernel boot command line
 
-  - Kernel boot command line options:
 ```bash
         systemd.unit=rescue.target
 ```
 
 
-* Boot into emergency shell:
+* Boot into emergency shell: Kernel boot command line options:
 
-  - Kernel boot command line options:
 ```bash
         systemd.unit=emergency.target
 ```
 
-  - Remount root filesystem r/w to be able to edit files:
+  - Remount root filesystem r/w to be able to edit files and change configuration
 ```bash
         mount -o remount,rw /
 ```
 
 
-* Boot into shell:
+* Boot into directly into root shell - Kernel boot command line options:
 
-  - Kernel boot command line options:
 ```bash
         init=/bin/sh
 ```
@@ -396,9 +392,8 @@ If you have an early shell, you can restore your system, change passwords etc...
 
 
 
-* Kernel module fails during boot
+* Kernel module fails during boot - Kernel boot command line if module fails during kernel:
 
-  - Kernel boot command line options if module fails during kernel:
 ```bash
         module_blacklist=modulename
 ```
@@ -409,15 +404,18 @@ If you have an early shell, you can restore your system, change passwords etc...
 ```
 
 
-* Kernel Boot blocked:
+#### 4.2.5 Boot blocked
 
-  - Ctrl+Alt+Del combo - the following file controls the handling of the combo:
+
+* Ctrl+Alt+Del combo - the following file controls the handling of the combo:
+
 ```bash
         cat /proc/sys/kernel/ctrl-alt-del
+        0   (means graceful restart)
 ```
-  0 means graceful restart, etc.
 
-  - [Magic SysRq](https://www.kernel.org/doc/html/latest/admin-guide/sysrq.html) Magical Linux kernel keys.
+* [Magic SysRq](https://www.kernel.org/doc/html/latest/admin-guide/sysrq.html) Magical Linux kernel keys.
+
 ```bash
         cat /proc/sys/kernel/sysrq
 ```
@@ -433,19 +431,15 @@ Use it with `Alt+SysRq+X` usually `SysRq` is `PrintScreen` or `ImpÉc` in azerty
 
 ### 4.3 Debug boot systemd - later boot stage
 
-* Debug systemd boot problems if it fails
+* Debug systemd boot problems if it fails - Kernel boot command line options:
 
-  - Kernel boot command line options:
 ```bash
         systemd.debug-shell=1
 ```
 
 
-
-* systemd boot log inspection:
-
-  - Get logs of boot
-```
+* systemd boot log inspection - Get logs of boot
+```bash
         sudo journalctl -b
         sudo journalctl -b -1
 ```
