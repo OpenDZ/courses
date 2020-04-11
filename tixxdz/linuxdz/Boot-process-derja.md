@@ -6,9 +6,9 @@ Djalal Harouni  -  https://github.com/tixxdz
 
 Email for corrections here:  tixxdz+linuxdz@gmail.com  -  sorry if I do not reply.
 
-Date: 10/04/2020
+Date: 10-04-2020
 
-LastModified: 10/04/2020
+LastModified: Sat 11 Apr 2020 10:54:16 AM CET
 
 
 ## What is about ?
@@ -28,7 +28,7 @@ Adapted to be easy with video in derja language, Algeria local dialect.
    - Services, security, logins and timers
 
 * Teacher ?
-   - Djalal Harouni - Open Source Software maintainer - linux kernel developer... Wrote code used in millions of machines and devices.
+   - Djalal Harouni - Open Source Software maintainer - systemd, linux kernel developer... wrote code used in millions of machines and devices.
 
 
 ## Plan
@@ -238,12 +238,31 @@ sudo journalctl -k
 
 * Kernel debug options to boot cmdline:
 
-  - Remove cmdline:    `quiet`  `splash`   `vt.handoff=7`
+  - Remove cmdline:   `quiet`   `splash`   `vt.handoff=7`
 
   - Add cmdline:  `console=ttyS0,115200 console=tty1`   `debug` or `debug=vc`
 
   - Change kernel ring buffer size: log_buf_len=16M 
 
+
+* Kernel debug options at runtime:
+
+  - [printk()](https://elinux.org/Debugging_by_printing) print to kernel log  -  printf() C language 
+        ```bash
+                cat /proc/sys/kernel/printk
+                        4       4       1       7
+	                current	default	minimum	boot-time-default
+        ```
+
+        Get all debug messages must be root:
+        ```bash
+                # echo 8 > /proc/sys/kernel/printk
+        ```
+
+  - dmesg
+        ```bash
+                sudo dmesg -n 5
+        ```
 
 * Kernel Boot blocked:
 
