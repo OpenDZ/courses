@@ -4,7 +4,7 @@ Video Link:
 
 Djalal Harouni  -  https://github.com/tixxdz
 
-Email for corrections here:  tixxdz+linuxdz@gmail.com  -  sorry if I do not reply.
+Email for corrections here:  tixxdz+linuxdz@gmail.com  -  sorry if I do not reply to all emails.
 
 Date: 10-04-2020
 
@@ -18,7 +18,7 @@ References:  https://training.linuxfoundation.org/training/fundamentals-of-linux
 Adapted to be easy with video in derja language, Algeria local dialect.
 
 * Ghir important things!
-   - Dirou research alone et berkewna men excuses ya wechbikoum?
+   - Dirou research alone, no excuses!
 
 * 3leh ?
    - Tal3ou niveau 
@@ -112,7 +112,7 @@ Parent of all processes.
 
 Sets up the machine
 
-Boot targets order: http://man7.org/linux/man-pages/man7/bootup.7.html
+[Bootup targets order](http://man7.org/linux/man-pages/man7/bootup.7.html)
 
 Sysinit.target, basic.target, multi-user.target and graphical.target
 
@@ -220,8 +220,13 @@ Display seats with loginctl - [multiseats](https://www.freedesktop.org/wiki/Soft
 
 ![Multi-seats source wikipedia](imgs/multi-seats.jpg)
 
-Lock and unlock sessions with loginctl
+Lock and unlock sessions with loginctl:
+```bash
+loginctl lock-session $id
+loginctl unlock-session $id
+```
 
+loginctl help  (press `q` to exit):
 ```bash
 loginctl --help
 ```
@@ -244,6 +249,49 @@ On Linux normally 6 virtual consoles + default physical one
 
 ![Virtual consoles](imgs/virtcons.gif) - https://www.cv.nrao.edu/~pmurphy/Talks/virtual_consoles/index.html
 
+```bash
+        ctl+alt+f(1,2,3,4,5,6,7)  or ctl+alt+fn+f(1,2,3,4,5,6,7)
+```
+
+Get current TTY:
+```bash
+        loginctl -a
+```
+
+Example switch to virtual console 3:
+```bash
+        Ctl+Alt+f3 or Ctl+Alt+Fn+f3
+```
+
+Example switch back easy:
+```bash
+        Ctl+Alt+f2 or Ctl+Alt+Fn+f2
+```
+
+Or example switch back with `chvt`
+```bash
+        sudo chvt 2
+```
+
+On Qemu emulator:
+
+  - Switch to Qemu console first
+```bash
+        Ctrl+Alt+2
+```
+
+  - Use the command: `sendkey ctrl-alt-f3` and press Enter on Qemu console
+```bash
+        sendkey ctrl+alt+f3
+```
+
+  - Switch back to Qemu VGA output where you will be in virtual console 3
+```bash
+        Ctrl+Alt+1
+```
+
+
+Why I need this ?  bech never mata7sel :-D !  ida process or something blocka (except of kernel panic)...
 
 
 ### 4.2 Debug boot kernel - early boot
