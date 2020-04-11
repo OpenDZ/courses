@@ -250,7 +250,7 @@ On Linux normally 6 virtual consoles + default physical one
 ![Virtual consoles](imgs/virtcons.gif) - https://www.cv.nrao.edu/~pmurphy/Talks/virtual_consoles/index.html
 
 ```bash
-        ctl+alt+f(1,2,3,4,5,6,7)  or ctl+alt+fn+f(1,2,3,4,5,6,7)
+        Ctl+Alt+f(1,2,3,4,5,6,7)  or  Ctl+Alt+fn+f(1,2,3,4,5,6,7)
 ```
 
 Get current TTY:
@@ -291,7 +291,8 @@ On Qemu emulator:
 ```
 
 
-Why I need this ?  bech never mata7sel :-D !  ida process or something blocka (except of kernel panic)...
+Why I need this ?  bech never mata7sel :-D !  ida process or something blocka (except of kernel panic, keyen 7al
+apres...)
 
 
 ### 4.2 Debug boot kernel - early boot
@@ -346,17 +347,13 @@ Kernel developers to inspect if messages are getting there (it uses printk inter
         # echo "insert from userspace by user $(whoami)" > /dev/kmsg
 ```
 
-* Boot fails: if boot fails 
+#### 4.2.4 Boot fails or blocked
 
-* Kernel Boot blocked:
+Try `Ctrl+Alt+Del` to reboot or hard reset
 
-Magic SysRq  ctl-alt-del  https://www.kernel.org/doc/html/latest/admin-guide/sysrq.html
-/proc/sys/kernel/sysrq  /proc/sys/kernel/ctrl-alt-del
+* Debug with hardware Serial Console
 
-
-### 4.3 Debug boot systemd - later boot stage
-
-Kernel boot command line options:
+  - Kernel boot command line options:
 ```bash
         systemd.log_level=debug systemd.log_target=console
 ```
@@ -366,9 +363,76 @@ Kernel boot command line options:
         systemd.journald.forward_to_console=1
 ```
 
+
+* Boot into rescue mode if problem is later after basic boot
+
+  - Kernel boot command line options:
+```bash
+        systemd.unit=rescue.target
+```
+
+
+* Boot into emergency shell:
+
+  - Kernel boot command line options:
+```bash
+        systemd.unit=emergency.target
+```
+
+  - Remount root filesystem r/w to be able to edit files:
+```bash
+        mount -o remount,rw /
+```
+
+
+* Boot into shell:
+
+  - Kernel boot command line options:
+```bash
+        init=/bin/sh
+```
+
+
+
+* Kernel Boot blocked:
+
+Magic SysRq  ctl-alt-del  https://www.kernel.org/doc/html/latest/admin-guide/sysrq.html
+/proc/sys/kernel/sysrq  /proc/sys/kernel/ctrl-alt-del
+
+
+### 4.3 Debug boot systemd - later boot stage
+
+* Debug systemd boot problems if it fails
+
+  - Kernel boot command line options:
+```bash
+        systemd.debug-shell=1
+```
+
+
+
 * systemd boot log inspection:
 
   - Get logs of boot
 ```
         sudo journalctl -b
         sudo journalctl -b -1
+```
+
+
+### Conclusion
+
+* These debug techniques made a root shell available, make sure to undo anything for security reasons.
+
+* We did see quickly Linux boot process in general
+
+* We did see systemd boot process targets
+
+* We did see Linux boot process debugging techniques
+
+* We did see example of a systemd timer job (cron like tool)
+
+
+Djalal Harouni sahitou!
+
+![Constantine](imgs/Constantine.jpg)
