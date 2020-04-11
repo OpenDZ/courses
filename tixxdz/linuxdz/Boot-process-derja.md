@@ -299,7 +299,7 @@ apres...)
 
 #### 4.2.1 Kernel Boot logs
 
-Logs are stored in `/var/log/dmesg` `/var/log/syslog`
+Logs are stored in `/var/log/dmesg` `/var/log/syslog` or `/var/log/kern.log`
 
 Commands to read logs:
 ```bash
@@ -392,12 +392,43 @@ Try `Ctrl+Alt+Del` to reboot or hard reset
         init=/bin/sh
 ```
 
+If you have an early shell, you can restore your system, change passwords etc...
+
+
+
+* Kernel module fails during boot
+
+  - Kernel boot command line options if module fails during kernel:
+```bash
+        module_blacklist=modulename
+```
+
+  - Kernel boot command line options if module fails during initramfs:
+```bash
+        rd.blacklist=modulename
+```
 
 
 * Kernel Boot blocked:
 
-Magic SysRq  ctl-alt-del  https://www.kernel.org/doc/html/latest/admin-guide/sysrq.html
-/proc/sys/kernel/sysrq  /proc/sys/kernel/ctrl-alt-del
+  - Ctrl+Alt+Del combo - the following file controls the handling of the combo:
+```bash
+        cat /proc/sys/kernel/ctrl-alt-del
+```
+  0 means graceful restart, etc.
+
+  - [Magic SysRq](https://www.kernel.org/doc/html/latest/admin-guide/sysrq.html) Magical Linux kernel keys.
+```bash
+        cat /proc/sys/kernel/sysrq
+```
+
+Control it with: **don't do it unless you know...**
+```bash
+        # echo "number" >/proc/sys/kernel/sysrq
+```
+
+Use it with `Alt+SysRq+X` usually `SysRq` is `PrintScreen` or `ImpÉc` in azerty keyboards on x86
+
 
 
 ### 4.3 Debug boot systemd - later boot stage
