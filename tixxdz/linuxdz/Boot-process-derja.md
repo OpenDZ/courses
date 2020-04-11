@@ -216,7 +216,7 @@ sudo systemctl start timer-hello-world.timer
 
 Display logins with [loginctl - systemd-logind](https://www.freedesktop.org/software/systemd/man/loginctl.html)
 
-Display seats with loginctl
+Display seats with loginctl - [multiseats](https://www.freedesktop.org/wiki/Software/systemd/multiseat/)
 
 Lock and unlock sessions with loginctl
 
