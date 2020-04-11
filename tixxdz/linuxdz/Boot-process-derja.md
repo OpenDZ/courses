@@ -72,7 +72,7 @@ Grub2 (GRand Unified Bootloader, version 2)
 	
 No more multiple stages: https://www.gnu.org/software/grub/manual/grub/grub.html
 
-Load Linux kernel and initramfs
+Load Linux kernel and initrd (initramfs)
 
 Files and configs:  /boot/grub2/
 
@@ -218,6 +218,8 @@ Display logins with [loginctl - systemd-logind](https://www.freedesktop.org/soft
 
 Display seats with loginctl - [multiseats](https://www.freedesktop.org/wiki/Software/systemd/multiseat/)
 
+![Multi-seats source wikipedia](imgs/multi-seats.jpg)
+
 Lock and unlock sessions with loginctl
 
 ```bash
@@ -227,45 +229,98 @@ loginctl --help
 
 ## 4. Debug boot and Security
 
-### 4.1 Debug boot kernel
+First lets see virtual consoles
 
-* Kernel Boot logs stored in `/var/log/dmesg` `/var/log/syslog`
+### 4.1 Virtual terminals or virtual consoles
 
+Comes from early days where single machines with multiple terminals [teletypes - the TTY
+demystified](https://www.linusakesson.net/programming/tty/)
+
+![oldschool](imgs/oldschool.jpg)
+
+Separate logins - these days due to personal computers it is called virtual termnials (simulates physical terminal)
+
+On Linux normally 6 virtual consoles + default physical one
+
+![Virtual consoles](imgs/virtcons.gif) - https://www.cv.nrao.edu/~pmurphy/Talks/virtual_consoles/index.html
+
+
+
+### 4.2 Debug boot kernel - early boot
+
+#### 4.2.1 Kernel Boot logs
+
+Logs are stored in `/var/log/dmesg` `/var/log/syslog`
+
+Commands to read logs:
 ```bash
 sudo dmesg
 sudo journalctl -k
 ```
 
-* Kernel debug options to boot cmdline:
+#### 4.2.2 Kernel cmdline debug options
 
-  - Remove cmdline:   `quiet`   `splash`   `vt.handoff=7`
+Remove cmdline:   `quiet`   `splash`   `vt.handoff=7`
 
-  - Add cmdline:  `console=ttyS0,115200 console=tty1`   `debug` or `debug=vc`
+Add cmdline kernel:
+```
+        console=ttyS0,115200 console=tty1
+        debug                           # or debug=vc
+        systemd.log_level=debug systemd.log_target=console
+```
 
-  - Change kernel ring buffer size: log_buf_len=16M 
+Change kernel ring buffer size: log_buf_len=16M 
 
 
-* Kernel debug options at runtime:
+#### 4.2.3 Kernel debug options at runtime:
 
-  - [printk()](https://elinux.org/Debugging_by_printing) print to kernel log  -  printf() C language 
-        ```bash
-                cat /proc/sys/kernel/printk
-                        4       4       1       7
-	                current	default	minimum	boot-time-default
-        ```
+[printk()](https://elinux.org/Debugging_by_printing) print to kernel log  -  printf() C language
 
-        Get all debug messages must be root:
-        ```bash
-                # echo 8 > /proc/sys/kernel/printk
-        ```
+```bash
+        cat /proc/sys/kernel/printk
+        4       4       1       7
+	current	default	minimum	boot-time-default
+```
 
-  - dmesg
-        ```bash
-                sudo dmesg -n 5
-        ```
+Get all debug messages must be root:
+```bash
+        # echo 8 > /proc/sys/kernel/printk
+```
+
+[dmesg](http://man7.org/linux/man-pages/man1/dmesg.1.html) - print control kernel ring buffer
+```bash
+        sudo dmesg -n 5
+```
+
+Kernel developers to inspect if messages are getting there (it uses printk internally)
+
+```bash
+        # echo "insert from userspace by user $(whoami)" > /dev/kmsg
+```
+
+* Boot fails: if boot fails 
 
 * Kernel Boot blocked:
 
 Magic SysRq  ctl-alt-del  https://www.kernel.org/doc/html/latest/admin-guide/sysrq.html
 /proc/sys/kernel/sysrq  /proc/sys/kernel/ctrl-alt-del
 
+
+### 4.3 Debug boot systemd - later boot stage
+
+Kernel boot command line options:
+```bash
+        systemd.log_level=debug systemd.log_target=console
+```
+
+  - Forward to console:
+```
+        systemd.journald.forward_to_console=1
+```
+
+* systemd boot log inspection:
+
+  - Get logs of boot
+```
+        sudo journalctl -b
+        sudo journalctl -b -1
