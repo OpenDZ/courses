@@ -1,14 +1,34 @@
-# 2. Boot process debugging, security and beyond - Linux-dz courses  (derja)
+# 2. Boot process debugging, security and beyond - Linuxdz courses derja
+
+
+
+Linux Kernel Boot process debugging, systemd, timers (cron), security and beyond.
+
+
+We will discuss:
+
+* Quickly Linux boot process in general
+
+* systemd init boot process and targets
+
+* Start system or programs at boot and timer services (cron jobs)
+
+* Techniques how to save your data or backup your system on emergency
+
+* Linux boot process debugging techniques
+
+* Discuss some security points across the whole document
+
 
 Video Link:
 
 Djalal Harouni  -  https://github.com/tixxdz
 
-Email for corrections here:  tixxdz+linuxdz@gmail.com  -  sorry if I do not reply to all emails.
+Email for corrections here:  tixxdz+linuxdz@gmail.com  -  (sorry if I do not reply to all emails.)
 
 Date: 10-04-2020
 
-LastModified: Sat 11 Apr 2020 10:54:16 AM CET
+LastModified: Sat 12 Apr 2020 10:54:16 AM CET
 
 
 ## What is about ?
@@ -21,11 +41,11 @@ Adapted to be easy with video in derja language, Algeria local dialect.
    - Dirou research alone, no excuses!
 
 * 3leh ?
-   - Tal3ou niveau 
+   - Tal3ou level 
 
 * Goal - Hadef ?
    - Debug Linux boot process and beyond
-   - Services, security, logins and timers
+   - Services, security, logins and timers (cron jobs)
 
 * Teacher ?
    - Djalal Harouni - Open Source Software maintainer - systemd, linux kernel developer... wrote code used in millions of machines and devices.
@@ -182,9 +202,6 @@ ExecStart=/usr/bin/echo "Timer hello world at $(date)"
 WantedBy=multi-user.target
 ```
 
-**Note: service type is oneshot (execute command and exit) if not then you do not need timers nor cron jobs**
-
-
 
 File [timer-hello-world.timer](../systemd/unit/timer-hello-world.timer)
 
@@ -250,22 +267,22 @@ On Linux normally 6 virtual consoles + default physical one
 ![Virtual consoles](imgs/virtcons.gif) - https://www.cv.nrao.edu/~pmurphy/Talks/virtual_consoles/index.html
 
 ```bash
-        Ctl+Alt+f(1,2,3,4,5,6,7)  or  Ctl+Alt+fn+f(1,2,3,4,5,6,7)
+        Ctrl+Alt+f(1,2,3,4,5,6,7)  or  Ctrl+Alt+fn+f(1,2,3,4,5,6,7)
 ```
 
-Get current TTY:
+List and get current TTY:
 ```bash
         loginctl -a
 ```
 
 Example switch to virtual console 3:
 ```bash
-        Ctl+Alt+f3 or Ctl+Alt+Fn+f3
+        Ctrl+Alt+f3 or Ctrl+Alt+Fn+f3
 ```
 
 Example switch back easy:
 ```bash
-        Ctl+Alt+f2 or Ctl+Alt+Fn+f2
+        Ctrl+Alt+f2 or Ctrl+Alt+Fn+f2
 ```
 
 Or example switch back with `chvt`
@@ -282,7 +299,7 @@ On Qemu emulator:
 
   - Use the command: `sendkey ctrl-alt-f3` and press Enter on Qemu console
 ```bash
-        sendkey ctrl+alt+f3
+        sendkey ctrl-alt-f3
 ```
 
   - Switch back to Qemu VGA output where you will be in virtual console 3
@@ -404,7 +421,7 @@ If you have an early shell, you can restore your system, change passwords etc...
 ```
 
 
-#### 4.2.5 Boot blocked
+#### 4.2.5 Boot or system blocked
 
 
 * Ctrl+Alt+Del combo - the following file controls the handling of the combo:
@@ -416,17 +433,41 @@ If you have an early shell, you can restore your system, change passwords etc...
 
 * [Magic SysRq](https://www.kernel.org/doc/html/latest/admin-guide/sysrq.html) Magical Linux kernel keys.
 
+Trigger SysRq with method (1) combo keys `Alt+SysRq+$command` usually `SysRq` is `PrintScreen` or `ImpÉc` in azerty keyboards on x86
+
+[SysRq Command keys](https://www.kernel.org/doc/html/latest/admin-guide/sysrq.html#what-are-the-command-keys)
+
+Control the combo `Alt+SysRq+$command` and which operation is allowed with:
 ```bash
         cat /proc/sys/kernel/sysrq
 ```
 
-Control it with: **don't do it unless you know...**
+**Important: dont use these commands unless you read the full documentation**
+
 ```bash
         # echo "number" >/proc/sys/kernel/sysrq
 ```
 
-Use it with `Alt+SysRq+X` usually `SysRq` is `PrintScreen` or `ImpÉc` in azerty keyboards on x86
 
+Otherwise trigger SysRq directly by method (2) write the `$command` to `/proc/sysrq-trigger`
+```bash
+        # echo $command > /proc/sysrq-trigger
+```
+
+Useful examples to save our system:
+
+  - 1) Only if in GUI environment, and if X server, wayland or for some reasons the keyboard is taken by another
+  resource, then lets put in raw mode then `Ctrl+Alt+fX` switch to another virtual console:
+```
+        Press combo key 'Alt+SysRq+r'
+```
+
+  - 2) Flushes cache to disk and perform an Emergency Sync - combo keyboard `Alt+SysRq+m` or:
+```bash
+        # echo s > /proc/sysrq-trigger
+```
+
+  - 3)
 
 
 ### 4.3 Debug boot systemd - later boot stage
@@ -442,6 +483,8 @@ Use it with `Alt+SysRq+X` usually `SysRq` is `PrintScreen` or `ImpÉc` in azerty
 ```bash
         sudo journalctl -b
         sudo journalctl -b -1
+        sudo cat /var/log/syslog
+        sudo cat /var/log/messages
 ```
 
 
@@ -455,7 +498,11 @@ Use it with `Alt+SysRq+X` usually `SysRq` is `PrintScreen` or `ImpÉc` in azerty
 
 * We did see Linux boot process debugging techniques
 
+* We did see some techniques on how to save your data or backup your system
+
 * We did see example of a systemd timer job (cron like tool)
+
+* We did see discuss some security points across the whole document
 
 
 Djalal Harouni sahitou!
