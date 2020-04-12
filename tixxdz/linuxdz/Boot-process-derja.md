@@ -1,7 +1,7 @@
 # 2. Boot process debugging, security and beyond - Linuxdz courses derja
 
 
-![Boot-process-derja header](https://github.com/OpenDZ/courses/blob/master/tixxdz/linuxdz/imgs/Boot-process-derja-header.png)
+![Boot-process-derja header](https://raw.githubusercontent.com/OpenDZ/courses/master/tixxdz/linuxdz/imgs/Boot-process-derja-header.png)
 
 
 We will discuss:
