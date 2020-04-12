@@ -4,9 +4,6 @@
 ![Boot-process-derja header](https://github.com/OpenDZ/courses/blob/master/tixxdz/linuxdz/imgs/Boot-process-derja-header.png)
 
 
-Linux Kernel Boot process debugging, systemd, timers (cron), security and beyond.
-
-
 We will discuss:
 
 * Quickly Linux boot process in general
