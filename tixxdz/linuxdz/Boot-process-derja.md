@@ -7,30 +7,41 @@ Linux Kernel Boot process debugging, systemd, timers (cron), security and beyond
 
 We will discuss:
 
-```
-        * Quickly Linux boot process in general
+* Quickly Linux boot process in general
 
-        * systemd init boot process and targets
+* systemd init boot process and targets
 
-        * Start system or programs at boot and timer services (cron jobs)
+* Start system or programs at boot and timer services (cron jobs)
 
-        * Techniques how to save your data or backup your system on emergency
+* Techniques how to save your data or backup your system on emergency
 
-        * Linux boot process debugging techniques
+* Linux boot process debugging techniques
 
-        * Discuss some security points across the whole document
-```
+* Discuss some security points across the whole document
 
+
+## Information
 
 Video Link:
 
-Djalal Harouni  -  [@tixxdz](https://github.com/tixxdz)
+Pdf Link:
+[Boot-process-derja.pdf](https://github.com/OpenDZ/courses/blob/master/tixxdz/linuxdz/Boot-process-derja.pdf)
 
-Email for corrections here:  tixxdz+linuxdz@gmail.com  -  (sorry if I do not reply to all emails.)
+Markdown Link:
+[Boot-process-derja.md](https://github.com/OpenDZ/courses/blob/master/tixxdz/linuxdz/Boot-process-derja.md)
+
+Djalal Harouni  -  [tixxdz](https://github.com/tixxdz)
 
 Date: 10-04-2020
 
-LastModified: Sat 12 Apr 2020 10:54:16 AM CET
+LastModified: Sat 12 Apr 2020
+
+Email for corrections here:  tixxdz+linuxdz@gmail.com  -  (sorry if I do not reply to all emails.)
+
+Note to convert to pdf:
+```bash
+        pandoc --variable urlcolor=blue linuxdz/Boot-process-derja.md -o linuxdz/Boot-process-derja.pdf
+```
 
 
 ## What is about ?
@@ -60,11 +71,13 @@ Adapted to be easy with video in derja language, Algeria local dialect.
    - Linux Kernel and initramfs
    - Init systemd and Services
 
-2) Systemd run program at boot and timers (cron jobs)
+2) Systemd run program during boot and timers (cron jobs)
 
 3) Logins and session
 
 4) Debug boot and Security
+
+5) Conclusion
 
 
 ## 1. Linux boot process
@@ -142,7 +155,7 @@ Sysinit.target, basic.target, multi-user.target and graphical.target
 systemd  - journald tools , systemd-cgls and others.
 
 
-## 2 Systemd run program at boot and timers (cron jobs)
+## 2 Systemd run program during boot and timers (cron jobs)
 
 ### 2.1 Example service or program running during each boot:
 
@@ -161,27 +174,27 @@ WantedBy=multi-user.target
 
 Installation commands:
 ```bash
-sudo cp hello-world.service /etc/systemd/system/
-sudo systemctl daemon-reload
-sudo systemctl enable hello-world.service
-sudo systemctl start hello-world.service
+        sudo cp hello-world.service /etc/systemd/system/
+        sudo systemctl daemon-reload
+        sudo systemctl enable hello-world.service
+        sudo systemctl start hello-world.service
 ```
 
 Stop:
 ```bash
-sudo systemctl stop hello-world.service
+        sudo systemctl stop hello-world.service
 ```
 
 Disable:
 ```bash
-sudo systemctl disable hello-world.service
+        sudo systemctl disable hello-world.service
 ```
 
 
 NetworkManager File [NetworkManager.Service](https://github.com/OpenDZ/courses/raw/master/tixxdz/systemd/units/NetworkManager.service) example.
 
 ```bash
-cat /lib/systemd/system/NetworkManager.service
+        cat /lib/systemd/system/NetworkManager.service
 ```
 
 
@@ -223,12 +236,12 @@ WantedBy=timers.target
 Install timer service commands:
 
 ```bash
-sudo cp timer-hello-world.service /etc/systemd/system/
-sudo cp timer-hello-world.timer /etc/systemd/system/
-sudo systemctl daemon-reload
-sudo systemctl enable timer-hello-world.service
-sudo systemctl enable timer-hello-world.timer
-sudo systemctl start timer-hello-world.timer
+        sudo cp timer-hello-world.service /etc/systemd/system/
+        sudo cp timer-hello-world.timer /etc/systemd/system/
+        sudo systemctl daemon-reload
+        sudo systemctl enable timer-hello-world.service
+        sudo systemctl enable timer-hello-world.timer
+        sudo systemctl start timer-hello-world.timer
 ```
 
 
@@ -243,13 +256,13 @@ wikipedia](https://github.com/OpenDZ/courses/raw/master/tixxdz/linuxdz/imgs/mult
 
 Lock and unlock sessions with loginctl:
 ```bash
-loginctl lock-session $id
-loginctl unlock-session $id
+        loginctl lock-session $id
+        loginctl unlock-session $id
 ```
 
 loginctl help  (press `q` to exit):
 ```bash
-loginctl --help
+        loginctl --help
 ```
 
 
@@ -262,16 +275,20 @@ First lets see virtual consoles
 Comes from early days where single machines with multiple terminals [teletypes - the TTY
 demystified](https://www.linusakesson.net/programming/tty/)
 
-![oldschool](https://github.com/OpenDZ/courses/raw/master/tixxdz/linuxdz/imgs/oldschool.jpg)
+![oldschool source the TTY demystified](https://github.com/OpenDZ/courses/raw/master/tixxdz/linuxdz/imgs/oldschool.jpg)
 
 Separate logins - these days due to personal computers it is called virtual termnials (simulates physical terminal)
 
-On Linux normally 6 virtual consoles + default physical one
+On Linux normally: **6 virtual consoles + default physical one**
 
-![Virtual consoles](https://github.com/OpenDZ/courses/raw/master/tixxdz/linuxdz/imgs/virtcons.gif) - https://www.cv.nrao.edu/~pmurphy/Talks/virtual_consoles/index.html
+![Virtual consoles source www.cv.nrao.eduo/~pmurphy/](https://github.com/OpenDZ/courses/raw/master/tixxdz/linuxdz/imgs/virtcons.gif)
 
-```bash
-        Ctrl+Alt+f(1,2,3,4,5,6,7)  or  Ctrl+Alt+fn+f(1,2,3,4,5,6,7)
+[Virtual Consoles pmurphy](https://www.cv.nrao.edu/~pmurphy/Talks/virtual_consoles/index.html)
+
+
+Linux switch between virtual consoles
+```
+        Combo keys Ctrl+Alt+f(1,2,3,4,5,6,7)  or  Ctrl+Alt+fn+f(1,2,3,4,5,6,7)
 ```
 
 List and get current TTY:
@@ -281,12 +298,12 @@ List and get current TTY:
 
 Example switch to virtual console 3:
 ```bash
-        Ctrl+Alt+f3 or Ctrl+Alt+Fn+f3
+        Press combo keys Ctrl+Alt+f3 or Ctrl+Alt+Fn+f3
 ```
 
 Example switch back easy:
 ```bash
-        Ctrl+Alt+f2 or Ctrl+Alt+Fn+f2
+        Press combo keys Ctrl+Alt+f2 or Ctrl+Alt+Fn+f2
 ```
 
 Or example switch back with `chvt`
@@ -298,7 +315,7 @@ On Qemu emulator:
 
   - Switch to Qemu console first
 ```bash
-        Ctrl+Alt+2
+        Press combo keys Ctrl+Alt+2
 ```
 
   - Use the command: `sendkey ctrl-alt-f3` and press Enter on Qemu console
@@ -308,24 +325,23 @@ On Qemu emulator:
 
   - Switch back to Qemu VGA output where you will be in virtual console 3
 ```bash
-        Ctrl+Alt+1
+        Press combo keys Ctrl+Alt+1
 ```
 
 
-Why I need this ?  bech never mata7sel :-D !  ida process or something blocka (except of kernel panic, keyen 7al
-apres...)
+Why I need this ?  bech never mata7sel :-D !  (except of kernel panic, keyen 7al apres...)
 
 
 ### 4.2 Debug boot kernel - early boot
 
 #### 4.2.1 Kernel Boot logs
 
-Logs are stored in `/var/log/dmesg` `/var/log/syslog` or `/var/log/kern.log`
+Logs are stored in files: `/var/log/dmesg` `/var/log/syslog` or `/var/log/kern.log`
 
 Commands to read logs:
 ```bash
-sudo dmesg
-sudo journalctl -k
+        sudo dmesg
+        sudo journalctl -k
 ```
 
 #### 4.2.2 Kernel cmdline debug options
@@ -339,7 +355,10 @@ Add cmdline kernel:
         systemd.log_level=debug systemd.log_target=console
 ```
 
-Change kernel ring buffer size: log_buf_len=16M 
+Change kernel ring buffer size at cmdline kernel:
+```
+        log_buf_len=16M 
+```
 
 
 #### 4.2.3 Kernel debug options at runtime:
@@ -428,18 +447,19 @@ If you have an early shell, you can restore your system, change passwords etc...
 #### 4.2.5 Boot or system blocked
 
 
-* Ctrl+Alt+Del combo - the following file controls the handling of the combo:
+Ctrl+Alt+Del combo - the following file controls the handling of the combo:
 
 ```bash
         cat /proc/sys/kernel/ctrl-alt-del
         0   (means graceful restart)
 ```
 
-* [Magic SysRq](https://www.kernel.org/doc/html/latest/admin-guide/sysrq.html) Magical Linux kernel keys.
+
+[Magic SysRq Documentation link](https://www.kernel.org/doc/html/latest/admin-guide/sysrq.html) Magical Linux kernel keys.
 
 Trigger SysRq with method (1) combo keys `Alt+SysRq+$command` usually `SysRq` is `PrintScreen` or `ImpÉc` in azerty keyboards on x86
 
-[SysRq Command keys](https://www.kernel.org/doc/html/latest/admin-guide/sysrq.html#what-are-the-command-keys)
+[SysRq Command keys link](https://www.kernel.org/doc/html/latest/admin-guide/sysrq.html#what-are-the-command-keys)
 
 Control the combo `Alt+SysRq+$command` and which operation is allowed with:
 ```bash
@@ -460,18 +480,92 @@ Otherwise trigger SysRq directly by method (2) write the `$command` to `/proc/sy
 
 Useful examples to save our system:
 
-  - 1) Only if in GUI environment, and if X server, wayland or for some reasons the keyboard is taken by another
+  - Only if in GUI environment, and if X server, wayland or for some reasons the keyboard is taken by another
   resource, then lets put in raw mode then `Ctrl+Alt+fX` switch to another virtual console:
 ```
         Press combo key 'Alt+SysRq+r'
 ```
 
-  - 2) Flushes cache to disk and perform an Emergency Sync - combo keyboard `Alt+SysRq+m` or:
+  - Will attempt to sync all mounted filesystems, flushes cache to disk and perform an Emergency Sync `Emergency Sync complete` - combo keyboard `Alt+SysRq+s` or:
 ```bash
         # echo s > /proc/sysrq-trigger
 ```
 
-  - 3)
+  - Send a SIGTERM to all processes, except for init - combo keyboard `Alt+SysRq+e` or:
+```bash
+        # echo e > /proc/sysrq-trigger
+```
+
+  - Will call the oom killer to kill a memory hog proces - combo keyboard `Alt+SysRq+f` or:
+```bash
+        # echo f > /proc/sysrq-trigger
+```
+
+  - Reboot the system **danger: without syncing or unmounting your disks** - combo keyboard `Alt+SysRq+b` or:
+```bash
+        # echo b > /proc/sysrq-trigger
+```
+
+  - Save files and restart your system if **kernel is still in safe state** use the following combos and **wait some seconds between each combo to give it time**:
+```
+        Combo key  Alt+SysRq+s
+        Combo key  Alt+SysRq+e
+        Combo key  Alt+SysRq+s
+        Combo key  Alt+SysRq+i
+        Combo key  Alt+SysRq+u
+        Combo key  Alt+SysRq+b
+```
+
+  - **If kernel is in bad state do not sync as you may cause corruption, (but modern filesystems are robust)**:
+```
+        Combo key  Alt+SysRq+e
+        Combo key  Alt+SysRq+i
+        Combo key  Alt+SysRq+u
+        Combo key  Alt+SysRq+b
+```
+
+  - Emergency or debug shells use the above to sync data to disk, and to reboot the system.
+
+
+  - Send a SIGKILL to all processes, except for init - combo keyboard `Alt+SysRq+i` or:
+```bash
+        # echo i > /proc/sysrq-trigger
+```
+
+  - Secure Access Key (SAK) Kills all programs on the current virtual console. (Kill trojan programs running at console that could grab password on logins)
+```bash
+        # echo k > /proc/sysrq-trigger
+```
+
+
+Debug system for **system or kernel developers only**:
+
+show-memory-usage
+```bash
+        # echo m > /proc/sysrq-trigger
+```
+
+show-backtrace-all-active-cpus
+```bash
+        # echo l > /proc/sysrq-trigger
+```
+
+show-task-states
+```bash
+        # echo t > /proc/sysrq-trigger
+```
+
+show-blocked-tasks (uninterruptable)
+```bash
+        # echo w > /proc/sysrq-trigger
+```
+
+crash kernel
+```bash
+        # echo c > /proc/sysrq-trigger
+```
+
+You can also debug locks, etc...
 
 
 ### 4.3 Debug boot systemd - later boot stage
@@ -491,8 +585,30 @@ Useful examples to save our system:
         sudo cat /var/log/messages
 ```
 
+* failed services
+```bash
+        sudo systemctl --failed
+```
 
-### Conclusion
+* Status of service
+```bash
+        sudo systemctl status sshd.service
+```
+
+* Debug slow boot
+```bash
+        sudo systemd-analyze
+        sudo systemd-analyze blame
+        sudo systemd-analyze critical-chain
+```
+
+* Config file:
+```
+        /etc/systemd/system.conf
+```
+
+
+## 5. Conclusion
 
 * These debug techniques made a root shell available, make sure to undo anything for security reasons.
 
