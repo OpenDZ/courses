@@ -7,22 +7,24 @@ Linux Kernel Boot process debugging, systemd, timers (cron), security and beyond
 
 We will discuss:
 
-* Quickly Linux boot process in general
+```
+        * Quickly Linux boot process in general
 
-* systemd init boot process and targets
+        * systemd init boot process and targets
 
-* Start system or programs at boot and timer services (cron jobs)
+        * Start system or programs at boot and timer services (cron jobs)
 
-* Techniques how to save your data or backup your system on emergency
+        * Techniques how to save your data or backup your system on emergency
 
-* Linux boot process debugging techniques
+        * Linux boot process debugging techniques
 
-* Discuss some security points across the whole document
+        * Discuss some security points across the whole document
+```
 
 
 Video Link:
 
-Djalal Harouni  -  https://github.com/tixxdz
+Djalal Harouni  -  [@tixxdz](https://github.com/tixxdz)
 
 Email for corrections here:  tixxdz+linuxdz@gmail.com  -  (sorry if I do not reply to all emails.)
 
@@ -33,7 +35,8 @@ LastModified: Sat 12 Apr 2020 10:54:16 AM CET
 
 ## What is about ?
 
-References:  https://training.linuxfoundation.org/training/fundamentals-of-linux/
+References: [Linux Foundation fundamentals of
+Linux](https://training.linuxfoundation.org/training/fundamentals-of-linux/)
 
 Adapted to be easy with video in derja language, Algeria local dialect.
 
@@ -80,7 +83,7 @@ Systemd  - only distributions with systemd
 
 Basic I/O System  -  is hardware working ?
 
-https://en.wikipedia.org/wiki/BIOS_interrupt_call
+[Bios_Interrupts](https://en.wikipedia.org/wiki/BIOS_interrupt_call)
 
 Find boot record load into ram and transfert execution 
 to 2) Boot  loader
@@ -90,7 +93,7 @@ to 2) Boot  loader
 
 Grub2 (GRand Unified Bootloader, version 2)
 	
-No more multiple stages: https://www.gnu.org/software/grub/manual/grub/grub.html
+No more multiple stages: [Grub Doc](https://www.gnu.org/software/grub/manual/grub/grub.html)
 
 Load Linux kernel and initrd (initramfs)
 
@@ -143,7 +146,7 @@ systemd  - journald tools , systemd-cgls and others.
 
 ### 2.1 Example service or program running during each boot:
 
-File [hello-world.service](../systemd/units/hello-world.service)
+File [hello-world.service](https://github.com/OpenDZ/courses/raw/master/tixxdz/systemd/units/hello-world.service)
 
 ```
 [Unit]
@@ -175,7 +178,7 @@ sudo systemctl disable hello-world.service
 ```
 
 
-NetworkManager File [NetworkManager.Service](../systemd/units/NetworkManager.service) example.
+NetworkManager File [NetworkManager.Service](https://github.com/OpenDZ/courses/raw/master/tixxdz/systemd/units/NetworkManager.service) example.
 
 ```bash
 cat /lib/systemd/system/NetworkManager.service
@@ -188,7 +191,7 @@ cat /lib/systemd/system/NetworkManager.service
 
 Example  timer-hello-world timer service  -  execute each 30 seconds
 
-File [timer-hello-world.service](../systemd/unit/timer-hello-world.service)
+File [timer-hello-world.service](https://github.com/OpenDZ/courses/raw/master/tixxdz/systemd/units/timer-hello-world.service)
 
 ```
 [Unit]
@@ -203,7 +206,7 @@ WantedBy=multi-user.target
 ```
 
 
-File [timer-hello-world.timer](../systemd/unit/timer-hello-world.timer)
+File [timer-hello-world.timer](https://github.com/OpenDZ/courses/raw/master/tixxdz/systemd/units/timer-hello-world.timer)
 
 ```
 [Unit]
@@ -235,7 +238,8 @@ Display logins with [loginctl - systemd-logind](https://www.freedesktop.org/soft
 
 Display seats with loginctl - [multiseats](https://www.freedesktop.org/wiki/Software/systemd/multiseat/)
 
-![Multi-seats source wikipedia](imgs/multi-seats.jpg)
+![Multi-seats source
+wikipedia](https://github.com/OpenDZ/courses/raw/master/tixxdz/linuxdz/imgs/multi-seats.jpg)
 
 Lock and unlock sessions with loginctl:
 ```bash
@@ -258,13 +262,13 @@ First lets see virtual consoles
 Comes from early days where single machines with multiple terminals [teletypes - the TTY
 demystified](https://www.linusakesson.net/programming/tty/)
 
-![oldschool](imgs/oldschool.jpg)
+![oldschool](https://github.com/OpenDZ/courses/raw/master/tixxdz/linuxdz/imgs/oldschool.jpg)
 
 Separate logins - these days due to personal computers it is called virtual termnials (simulates physical terminal)
 
 On Linux normally 6 virtual consoles + default physical one
 
-![Virtual consoles](imgs/virtcons.gif) - https://www.cv.nrao.edu/~pmurphy/Talks/virtual_consoles/index.html
+![Virtual consoles](https://github.com/OpenDZ/courses/raw/master/tixxdz/linuxdz/imgs/virtcons.gif) - https://www.cv.nrao.edu/~pmurphy/Talks/virtual_consoles/index.html
 
 ```bash
         Ctrl+Alt+f(1,2,3,4,5,6,7)  or  Ctrl+Alt+fn+f(1,2,3,4,5,6,7)
@@ -507,4 +511,4 @@ Useful examples to save our system:
 
 Djalal Harouni sahitou!
 
-![Constantine](imgs/Constantine.jpg)
+![Constantine](https://github.com/OpenDZ/courses/raw/master/tixxdz/linuxdz/imgs/Constantine.jpg)
