@@ -3,7 +3,7 @@ Description=Timer hello world - Service unit
 
 [Service]
 Type=oneshot
-ExecStart=/usr/bin/echo "Timer hello world at $(date)"
+ExecStart=/bin/bash -c 'echo Timer hello world at $(date)'
 
 [Install]
 WantedBy=multi-user.target

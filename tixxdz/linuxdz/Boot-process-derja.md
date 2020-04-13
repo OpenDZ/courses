@@ -21,7 +21,10 @@ We will discuss:
 
 ## Information
 
-Video Link:
+Video Link Part 1:
+
+Video Link Part 2:
+
 
 Pdf Link:
 [Boot-process-derja.pdf](https://github.com/OpenDZ/courses/blob/master/tixxdz/linuxdz/Boot-process-derja.pdf)
@@ -212,7 +215,7 @@ Description=Timer hello world - Service unit
 
 [Service]
 Type=oneshot
-ExecStart=/usr/bin/echo "Timer hello world at $(date)"
+ExecStart=/bin/bash -c 'echo Timer hello world at $(date)'
 
 [Install]
 WantedBy=multi-user.target
@@ -422,7 +425,7 @@ Try `Ctrl+Alt+Del` to reboot or hard reset
 ```
 
 
-* Boot into directly into root shell - Kernel boot command line options:
+* Boot directly into root shell - Kernel boot command line options:
 
 ```bash
         init=/bin/sh
