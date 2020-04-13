@@ -1,4 +1,4 @@
-# 2. Boot process debugging, security and beyond - Linuxdz courses derja
+# 2. Boot process debugging, security and beyond - Linuxdz courses derja - Language local Algerian dialect
 
 
 ![Boot-process-derja header](https://raw.githubusercontent.com/OpenDZ/courses/master/tixxdz/linuxdz/imgs/Boot-process-derja-header.png)
@@ -21,7 +21,7 @@ We will discuss:
 
 ## Information
 
-Videos are in local Algerian dialact.
+Videos are in local Algerian dialect.
 
 Video Link Part 1: [Introduction](https://youtu.be/Ti4KsruEJW4)
 
