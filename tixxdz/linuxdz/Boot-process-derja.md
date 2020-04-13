@@ -29,17 +29,18 @@ Pdf Link:
 Markdown Link:
 [Boot-process-derja.md](https://github.com/OpenDZ/courses/blob/master/tixxdz/linuxdz/Boot-process-derja.md)
 
-Djalal Harouni  -  [tixxdz](https://github.com/tixxdz)
-
-Date: 10-04-2020
-
-LastModified: Sat 12 Apr 2020
+Djalal Harouni  -  [github](https://github.com/tixxdz)  -  [twitter](https://twitter.com/tixxdz)
 
 Email for corrections here:  tixxdz+linuxdz@gmail.com  -  (sorry if I do not reply to all emails.)
 
+Date: 10-04-2020
+
+Last Modified: Mon 13 Apr 2020
+
+
 Note to convert to pdf:
 ```bash
-        pandoc --variable urlcolor=blue linuxdz/Boot-process-derja.md -o linuxdz/Boot-process-derja.pdf
+   pandoc --variable urlcolor=blue linuxdz/Boot-process-derja.md -o linuxdz/Boot-process-derja.pdf
 ```
 
 
@@ -584,7 +585,7 @@ You can also debug locks, etc...
         sudo cat /var/log/messages
 ```
 
-* failed services
+* Failed services
 ```bash
         sudo systemctl --failed
 ```
@@ -606,6 +607,8 @@ You can also debug locks, etc...
         /etc/systemd/system.conf
 ```
 
+* Do your own research
+
 
 ## 5. Conclusion
 
@@ -624,6 +627,6 @@ You can also debug locks, etc...
 * We did see discuss some security points across the whole document
 
 
-Djalal Harouni sahitou!
+Sahitou!
 
 ![Constantine](https://github.com/OpenDZ/courses/raw/master/tixxdz/linuxdz/imgs/Constantine.jpg)
