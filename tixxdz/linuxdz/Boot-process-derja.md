@@ -21,9 +21,13 @@ We will discuss:
 
 ## Information
 
-Video Link Part 1:
+Videos are in local Algerian dialact.
 
-Video Link Part 2:
+Video Link Part 1: [Introduction](https://youtu.be/Ti4KsruEJW4)
+
+Video Link Part 2: [systemd, services, timers cron jobs and logins](https://youtu.be/nPsMgegKLV4)
+
+Video Link Part 3: Linux and systemd boot debugging  - to be added
 
 
 Pdf Link:
