@@ -27,7 +27,7 @@ Video Link Part 1: [Introduction](https://youtu.be/Ti4KsruEJW4)
 
 Video Link Part 2: [systemd, services, timers cron jobs and logins](https://youtu.be/nPsMgegKLV4)
 
-Video Link Part 3: Linux and systemd boot debugging  - to be added
+Video Link Part 3: [Debug Linux kernel and systemd boot with some security points](https://youtu.be/d-T2Q4A88Zs)
 
 
 Pdf Link:
