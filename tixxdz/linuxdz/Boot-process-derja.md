@@ -56,7 +56,7 @@ Note to convert to pdf:
 References: [Linux Foundation fundamentals of
 Linux](https://training.linuxfoundation.org/training/fundamentals-of-linux/)
 
-Adapted to be easy with video in derja language, Algeria local dialect.
+Chapter 4. Boot Process  -  Adapted to be easy with video in derja language, Algeria local dialect.
 
 * Ghir important things!
    - Dirou research alone, no excuses!
@@ -69,7 +69,7 @@ Adapted to be easy with video in derja language, Algeria local dialect.
    - Services, security, logins and timers (cron jobs)
 
 * Teacher ?
-   - Djalal Harouni - Open Source Software maintainer - systemd, linux kernel developer... wrote code used in millions of machines and devices.
+   - Djalal Harouni - Open Source Software maintainer - systemd, linux kernel developer... wrote code used in millions of machines and devices. CEO at [Ionoid.io](https://ionoid.io) Next generation IoT deployment solutions.
 
 
 ## Plan
@@ -476,7 +476,7 @@ Control the combo `Alt+SysRq+$command` and which operation is allowed with:
 **Important: dont use these commands unless you read the full documentation**
 
 ```bash
-        # echo "number" >/proc/sys/kernel/sysrq
+        # echo "number" > /proc/sys/kernel/sysrq
 ```
 
 
@@ -493,7 +493,7 @@ Useful examples to save our system:
         Press combo key 'Alt+SysRq+r'
 ```
 
-  - Will attempt to sync all mounted filesystems, flushes cache to disk and perform an Emergency Sync `Emergency Sync complete` - combo keyboard `Alt+SysRq+s` or:
+  - Will attempt to sync all mounted filesystems, flushes cache to disk and perform an Emergency Sync you have to see `Emergency Sync complete` - combo keyboard `Alt+SysRq+s` or:
 ```bash
         # echo s > /proc/sysrq-trigger
 ```
