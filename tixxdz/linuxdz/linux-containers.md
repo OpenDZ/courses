@@ -319,6 +319,7 @@ Linux namespaces are a set of primitives that controls what a process can use or
 
 "Namespaces are a feature of the Linux kernel that partitions kernel resources such that one set of processes sees one set of resources while another set of processes sees a different set of resources. The feature works by having the same namespace for a set of resources and processes, but those namespaces refer to distinct resources. Resources may exist in multiple spaces. Examples of such resources are process IDs, hostnames, user IDs, file names, and some names associated with network access, and interprocess communication." https://en.wikipedia.org/wiki/Linux_namespaces
 
+https://man7.org/linux/man-pages/man7/namespaces.7.html
 
 On startup there is a single namespace of each type.
 
@@ -374,18 +375,21 @@ Output:
 ```
 
 
+Isolating the Hostname:
+https://medium.com/@teddyking/linux-namespaces-850489d3ccf
 
-
-Isolating the Hostname
 Isolating Process IDs
-Changing the Root Directory
-Combine Namespacing and Changing the Root
-Mount Namespace
-Pid Namspace
-Network Namespace
-Other namespaces
-Control Groups
 
+
+Mount namespaces:
+https://lwn.net/Articles/689856/
+
+
+Other namespaces
+https://man7.org/linux/man-pages/man7/namespaces.7.html
+
+Control Groups
+https://www.kernel.org/doc/html/latest/admin-guide/cgroup-v1/cgroups.html
 
 ## 7. Containers in practice
 
