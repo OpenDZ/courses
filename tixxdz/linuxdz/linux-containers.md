@@ -106,13 +106,12 @@ Reference:
 
 
 History of containers:
-* https://dzone.com/articles/evolution-of-linux-containers-future
-
+* [https://dzone.com/articles/evolution-of-linux-containers-future](https://dzone.com/articles/evolution-of-linux-containers-future)
 
 Docker is an engine that runs containers. These days internally it uses containerd, and Docker is more of an engine on its own. 
 
 Install docker:
-* https://docs.docker.com/engine/install/ubuntu/
+* [https://docs.docker.com/engine/install/ubuntu/](https://docs.docker.com/engine/install/ubuntu)
 
 
 ### 1.3 Container examples / projects
@@ -144,7 +143,7 @@ Exercises:
 
 Advanced exercises:
 Dockerizing a Node.js web app:
-https://nodejs.org/en/docs/guides/nodejs-docker-webapp/
+[https://nodejs.org/en/docs/guides/nodejs-docker-webapp/](https://nodejs.org/en/docs/guides/nodejs-docker-webapp/)
 
 
 Python Development environment:
@@ -162,10 +161,10 @@ More reading: dockerfile and docker compose
 ![Linux cloud ecosystem](https://github.com/OpenDZ/courses/raw/master/tixxdz/linuxdz/imgs/architecture-linux-cloud.png)
 
 
-Cloud native landscape: https://landscape.cncf.io/
+Cloud native landscape: [https://landscape.cncf.io/](https://landscape.cncf.io/)
 
 Containers:
-https://landscape.cncf.io/card-mode?category=container-runtime&grouping=category
+[https://landscape.cncf.io/card-mode?category=container-runtime&grouping=category](https://landscape.cncf.io/card-mode?category=container-runtime&grouping=category)
 
 
 ## 3. Linux containers modern application deployment
@@ -319,7 +318,8 @@ Linux namespaces are a set of primitives that controls what a process can use or
 
 "Namespaces are a feature of the Linux kernel that partitions kernel resources such that one set of processes sees one set of resources while another set of processes sees a different set of resources. The feature works by having the same namespace for a set of resources and processes, but those namespaces refer to distinct resources. Resources may exist in multiple spaces. Examples of such resources are process IDs, hostnames, user IDs, file names, and some names associated with network access, and interprocess communication." https://en.wikipedia.org/wiki/Linux_namespaces
 
-https://man7.org/linux/man-pages/man7/namespaces.7.html
+[https://man7.org/linux/man-pages/man7/namespaces.7.html](https://man7.org/linux/man-pages/man7/namespaces.7.html)
+
 
 On startup there is a single namespace of each type.
 
@@ -376,32 +376,33 @@ Output:
 
 
 Isolating the Hostname:
-https://medium.com/@teddyking/linux-namespaces-850489d3ccf
+[https://medium.com/@teddyking/linux-namespaces-850489d3ccf](https://medium.com/@teddyking/linux-namespaces-850489d3ccf)
 
 Isolating Process IDs:
-https://opensource.com/article/19/10/namespaces-and-containers-linux
+[https://opensource.com/article/19/10/namespaces-and-containers-linux](https://opensource.com/article/19/10/namespaces-and-containers-linux)
 
 
 Mount namespaces:
-https://lwn.net/Articles/689856/
+[https://lwn.net/Articles/689856/](https://lwn.net/Articles/689856/)
 
 
 Other namespaces
-https://man7.org/linux/man-pages/man7/namespaces.7.html
+[https://man7.org/linux/man-pages/man7/namespaces.7.html](https://man7.org/linux/man-pages/man7/namespaces.7.html)
+
 
 Control Groups
-https://www.kernel.org/doc/html/latest/admin-guide/cgroup-v2.html
+[https://www.kernel.org/doc/html/latest/admin-guide/cgroup-v2.html](https://www.kernel.org/doc/html/latest/admin-guide/cgroup-v2.html)
 
 
 ## 7. Containers in practice
 
 Docker Tutorial for Beginners - A Full DevOps Course on How to Run Applications in Containers:
 
-https://www.youtube.com/watch?v=fqMOX6JJhGo
+[https://www.youtube.com/watch?v=fqMOX6JJhGo](https://www.youtube.com/watch?v=fqMOX6JJhGo)
 
 
 Dockerfile Best Practices:
-https://www.youtube.com/watch?v=JofsaZ3H1qM
+[https://www.youtube.com/watch?v=JofsaZ3H1qM](https://www.youtube.com/watch?v=JofsaZ3H1qM)
 
 
 ## 8. Containers advanced security protections
@@ -409,23 +410,26 @@ https://www.youtube.com/watch?v=JofsaZ3H1qM
 ### 8.1 Seccomp
 
 Seccomp BPF (SECure COMPuting with filters):
-https://www.kernel.org/doc/html/v4.16/userspace-api/seccomp_filter.html
+[https://www.kernel.org/doc/html/v4.16/userspace-api/seccomp_filter.html](https://www.kernel.org/doc/html/v4.16/userspace-api/seccomp_filter.html)
 
-https://blog.selectel.com/containers-security-seccomp/
+[https://blog.selectel.com/containers-security-seccomp/](https://blog.selectel.com/containers-security-seccomp/)
 
 
 Linux security modules
-https://www.kernel.org/doc/html/latest/admin-guide/LSM/index.html
+[https://www.kernel.org/doc/html/latest/admin-guide/LSM/index.html]
+(https://www.kernel.org/doc/html/latest/admin-guide/LSM/index.html)
 
 Linux eBPF 
-https://ebpf.io/
+[https://ebpf.io/](https://ebpf.io/)
+
 
 ## 9. Cloud deployment
 
 
 ![Linux system calls](https://github.com/OpenDZ/courses/raw/master/tixxdz/linuxdz/imgs/k8s.png)
 
-https://kubernetes.io/
+[https://kubernetes.io/](https://kubernetes.io/)
+
 
 See workshop [Discovering Kubernetes](https://annaba.tech/workshops/discovering-kubernetes) by Mr. Djelloul Bouida.
 
@@ -440,12 +444,12 @@ We saw briefly Linux containers security and other Linux security mechanisms, at
 
 ## References
 
-* https://containerlabs.kubedaily.com/LXC/
+* [https://containerlabs.kubedaily.com/LXC/](https://containerlabs.kubedaily.com/LXC/)
 
-* https://github.com/Fewbytes/rubber-docker
+* [https://github.com/Fewbytes/rubber-docker](https://github.com/Fewbytes/rubber-docker)
 
-* https://en.wikipedia.org/wiki/Linux_namespaces
+* [https://en.wikipedia.org/wiki/Linux_namespaces](https://en.wikipedia.org/wiki/Linux_namespaces)
 
-* https://towardsdatascience.com/a-concise-guide-to-docker-f6b6d5fb56f4
+* [https://towardsdatascience.com/a-concise-guide-to-docker-f6b6d5fb56f4](https://towardsdatascience.com/a-concise-guide-to-docker-f6b6d5fb56f4)
 
 * Book "Container Security Fundamental Technology Concepts that Protect Containerized Applications" by Liz Rice.
