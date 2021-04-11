@@ -378,7 +378,8 @@ Output:
 Isolating the Hostname:
 https://medium.com/@teddyking/linux-namespaces-850489d3ccf
 
-Isolating Process IDs
+Isolating Process IDs:
+https://opensource.com/article/19/10/namespaces-and-containers-linux
 
 
 Mount namespaces:
@@ -389,7 +390,8 @@ Other namespaces
 https://man7.org/linux/man-pages/man7/namespaces.7.html
 
 Control Groups
-https://www.kernel.org/doc/html/latest/admin-guide/cgroup-v1/cgroups.html
+https://www.kernel.org/doc/html/latest/admin-guide/cgroup-v2.html
+
 
 ## 7. Containers in practice
 
